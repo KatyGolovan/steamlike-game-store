@@ -1,0 +1,23 @@
+<nav class="navbar bg-primary">
+    <ul *ngIf="auth.isAuthenticated()">
+      <li routerLinkActive="active">
+        <a [routerLink]="['/', 'games']">Games</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/', 'library']">Library</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/', 'friends']">Friends</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/', 'profile']">Profile</a>
+      </li>
+      <li>
+        <a href="#" (click)="logout($event)">Logout</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>

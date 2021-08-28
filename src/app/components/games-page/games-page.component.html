@@ -1,0 +1,23 @@
+<div *ngIf="games.length; else loading">
+    <div class="form-control">
+      <input type="text" placeholder="Search" [(ngModel)]="searchStr">
+    </div>
+    <div class="games" *ngFor="let game of games">
+        <div class="card">
+            <div class="header">
+                <h2>game.name</h2>
+                <h4>game.price</h4>
+            </div>
+            <div>
+                <p>game.tags</p>
+            </div>
+            <button [routerLink]="['/library']">
+                Add to Library
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="text-center">Loading...</p>
+  </ng-template>
