@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { SearchFriends } from './services/pipes/search-friends.pipe';
 import { SearchGames } from './services/pipes/search-games.pipe';
 import { AuthGuard } from './services/auth.guard';
+import { environment } from '../environments/environment';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -55,7 +57,13 @@ const INTERCEPTOR_PROVIDER: Provider = {
           {path: 'profile', component: ProfileComponent}
         ]
       }
-    ])
+    ]),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   exports: [
     RouterModule,
