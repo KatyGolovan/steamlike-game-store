@@ -19,6 +19,7 @@ import { SearchFriends } from './services/pipes/search-friends.pipe';
 import { SearchGames } from './services/pipes/search-games.pipe';
 import { AuthGuard } from './services/auth.guard';
 import { environment } from '../environments/environment';
+import { HeaderComponent } from './components/header/header.component';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -37,7 +38,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ProfileComponent,
     MainLayoutComponent,
     SearchFriends,
-    SearchGames
+    SearchGames,
+    HeaderComponent
     
   ],
   imports: [

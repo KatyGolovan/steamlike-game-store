@@ -8,19 +8,10 @@ import {AuthService} from '../../services/auth.service';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor(
-    private router: Router,
-    public auth: AuthService
-  ) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  logout(event: Event) {
-    event.preventDefault();
-    this.auth.logout();
-    this.router.navigate(['/', 'login']);
   }
 
 }
