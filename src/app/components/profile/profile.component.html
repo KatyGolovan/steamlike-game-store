@@ -1,1 +1,47 @@
-<p>profile works!</p>
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h2>Profile</h2>
+    
+    <div class="form-control">
+        <label for="username">Username:</label>
+        <input id="username" type="text" formControlName="username">
+        <div *ngIf="form.get('username')?.touched && form.get('username')?.invalid" class="validation">
+          <small *ngIf="form.get('username')?.errors?.required">
+            enter username
+          </small>
+          <small *ngIf="form.get('username')?.errors?.minlength">
+            username must be at least 3 characters long
+          </small>
+        </div>
+    </div>
+
+    <div class="form-control" [ngClass]="{invalid: form.get('email')?.touched && form.get('email')?.invalid}">
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" placeholder="{{form.get('email')}}">
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="validation">
+        <small *ngIf="form.get('email')?.errors?.required">
+          enter email
+        </small>
+        <small *ngIf="form.get('email')?.errors?.email">
+          enter a valid email
+        </small>
+      </div>
+    </div>
+  
+    <div class="form-control" [ngClass]="{invalid: form.get('password')?.touched && form.get('password')?.invalid}">
+      <label for="age">Age:</label>
+      <input id="age" type="text" formControlName="age">
+      <div class="validation" *ngIf="form.get('age')?.touched && form.get('age')?.invalid">
+        <small *ngIf="form.get('age')?.errors?.required">
+          enter password
+        </small>
+        <small *ngIf="form.get('age')?.errors?.minlength">
+          password must be at least 2 characters long
+        </small>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">
+      Submit
+    </button>
+  </form>
+  

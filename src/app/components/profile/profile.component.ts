@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  form = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
+    age: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ])
+  })
 
-  ngOnInit(): void {
+  submitted = false
+
+
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+
+  ) {
+  }
+
+  ngOnInit() {}
+
+  submit() {
+    this.submitted = true;
+    alert("Profile information updated");
   }
 
 }

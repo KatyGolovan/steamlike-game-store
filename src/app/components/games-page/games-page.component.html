@@ -1,23 +1,41 @@
-<div *ngIf="games.length; else loading">
-    <div class="form-control">
+    <div>
+        <h2> Welcome to the Games page</h2>
+    </div><div class="form-control">
       <input type="text" placeholder="Search" [(ngModel)]="searchStr">
     </div>
-    <div class="games" *ngFor="let game of games">
+    <div class="games" *ngFor="let game of games | searchGames:searchStr | searchGames: searchAction | searchGames: searchSimulation | searchGames: searchAdventure | searchGames: searchSurvival | searchGames: searchHorror">
         <div class="card">
             <div class="header">
-                <h2>game.name</h2>
-                <h4>game.price</h4>
+                <h2>{{game.name}}</h2>
+                <h4>{{game.price}}</h4>
             </div>
             <div>
-                <p>game.tags</p>
+                <p>{{game.tags}}</p>
             </div>
-            <button [routerLink]="['/library']">
+            <button type="button" (click)="addToLibrary(game.id)" *ngIf="!game.bougth">
                 Add to Library
             </button>
         </div>
     </div>
-</div>
-
-<ng-template #loading>
-    <p class="text-center">Loading...</p>
-  </ng-template>
+    <div class="form-control check">
+        <div>
+            <input type="checkbox" id="action" (change)="onChecked($event, 'Action')" [(ngModel)]="searchAction">
+            <label for="action">Action</label>
+        </div>
+        <div>
+            <input type="checkbox" id="adventure" (change)="onChecked($event, 'Adventure')" [(ngModel)]="searchAdventure">
+            <label for="strategy">Adventure</label>
+        </div>
+        <div>
+            <input type="checkbox" id="survival" (change)="onChecked($event, 'Survival')" [(ngModel)]="searchSurvival">
+            <label for="survival">Survival</label>
+        </div>
+        <div>
+            <input type="checkbox" id="horror" (change)="onChecked($event, 'Survival')" [(ngModel)]="searchHorror">
+            <label for="horror">Horror</label>
+        </div>
+        <div>
+            <input type="checkbox" id="simulation" (change)="onChecked($event, 'Simulation')" [(ngModel)]="searchSimulation">
+            <label for="simulation">Simulation</label>
+        </div>
+    </div>

@@ -16,12 +16,24 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "rxjs": [
+        "node_modules/rxjs"
+      ],
+      "rxjs/*": [
+        "node_modules/rxjs/*"
+      ]
+    },
     "lib": [
       "es2018",
       "dom"
     ]
   },
   "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

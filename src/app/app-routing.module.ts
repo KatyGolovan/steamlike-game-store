@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, PreloadingStrategy, RouterModule, Routes } from '@angular/router';
 import {FriendsPageComponent} from './components/friends-page/friends-page.component';
-import {GameComponent} from './components/game/game.component';
 import {GamesPageComponent} from './components/games-page/games-page.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {LibraryComponent} from './components/library/library.component';

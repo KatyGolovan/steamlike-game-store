@@ -5,24 +5,21 @@ export interface User {
   }
   
   export interface FbAuthResponse {
-    idToken: any
-    expiresIn: any
+    idToken: string
+    expiresIn: string
   }
-  
-  // export interface Post {
-  //   id?: string
-  //   title: string
-  //   text: string
-  //   author: string
-  //   date: Date
-  // }
+ 
   export interface Game {
+    id: string
     bougth: boolean
     name: string
     price: string
     tags: []
   }
-  export interface FbCreateResponse {
+
+  export interface Friend {
+    id: string
+    added: boolean
     name: string
   }
   
