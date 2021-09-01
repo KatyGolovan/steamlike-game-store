@@ -12,21 +12,25 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   get token(): string {
-    //!
-    const expDate = new Date(localStorage.getItem('fb-token-exp')!)
+    const tokenEexpDate = localStorage.getItem('fb-token-exp');
+    const token = localStorage.getItem('fb-token');
+    if (!tokenEexpDate || !token){
+      return null as any;
+    }
+    const expDate = new Date( tokenEexpDate as string)
     if (new Date() > expDate) {
       this.logout()
-      return null as any
+      return null as any;
     }
-    //json.parse and !
-    return JSON.parse(localStorage.getItem('fb-token')!)
+    
+    return token;
   }
 
   login(user: User): Observable<any> {
     user.returnSecureToken = true
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
-        tap(this.setToken),
+        tap((response) => this.setToken(response as FbAuthResponse)),
       )
   }
 
@@ -38,7 +42,7 @@ export class AuthService {
     return !!this.token
   }
 
-  private setToken(response: FbAuthResponse | null | any) {
+  private setToken(response: FbAuthResponse | null) {
     if (response) {
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000)
       localStorage.setItem('fb-token', response.idToken)

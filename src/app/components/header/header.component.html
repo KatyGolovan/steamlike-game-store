@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary">
+<nav class="navbar bg-primary" *ngIf="auth.isAuthenticated()">
     <ul>
       <li routerLinkActive="active">
         <a [routerLink]="['/', 'games']">Games</a>
